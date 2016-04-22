@@ -1,4 +1,4 @@
-package com.g_art.personalapp;
+package com.g_art.personalapp.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.g_art.personalapp.R;
 
 public class PersonalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
