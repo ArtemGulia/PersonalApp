@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:initialLayout="@layout/widget_layout"
     android:minWidth="294dp"
-    android:minHeight="250dp"
+    android:minHeight="190dp"
     android:minResizeWidth="294dp"
-    android:minResizeHeight="250dp"
+    android:minResizeHeight="190dp"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="2400000">
 </appwidget-provider>

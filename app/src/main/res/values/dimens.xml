@@ -6,4 +6,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <!-- btn_outlay_shape. -->
+    <dimen name="btn_outlay_horizontal_material">@dimen/abc_button_inset_horizontal_material</dimen>
+    <dimen name="btn_outlay_vertical_material">@dimen/abc_button_inset_vertical_material</dimen>
+    <dimen name="btn_outlay_control_corner_material">@dimen/abc_control_corner_material</dimen>
+    <dimen name="btn_outlay_padding_horizontal_material">@dimen/abc_button_padding_horizontal_material</dimen>
+    <dimen name="btn_outlay_padding_vertical_material">@dimen/abc_button_padding_vertical_material</dimen>
 </resources>

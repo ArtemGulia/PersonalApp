@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="widgetNumberBtnText">#212121</color>
+    <color name="widgetTextColor">#FFFFFF</color>
+
+    <color name="widgetBackground">#2196F3</color>
+    <color name="widgetTitle">#303F9F</color>
+
+    <color name="widgetOutlayTypes">#29B6F6</color>
+    <color name="widgetNumberBtn">#FFFFFF</color>
 </resources>

@@ -8,8 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AddButton" parent="AppTheme">
-        <item name="android:background">@color/colorPrimary</item>
+    <style name="OutLayButtons" parent="Base.Widget.AppCompat.Button.Small">
+        <item name="android:background">@drawable/btn_outlay_shape</item>
+    </style>
+
+    <style name="OutLayNumberButtons" parent="Base.Widget.AppCompat.Button.Small">
+        <item name="android:background">@drawable/btn_outlay_numbers_shape</item>
+        <item name="android:textColor">@color/widgetNumberBtnText</item>
+    </style>
+
+    <style name="OutLayWidget" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@drawable/widget_shape</item>
+    </style>
+
+    <style name="OutLayWidgetTitle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/widgetTextColor</item>
+        <item name="android:background">@drawable/widget_title_shape</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
