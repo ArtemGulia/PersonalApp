@@ -66,18 +66,17 @@ public class WidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 
         if (FIRST_OUTLAY_TYPE.equals(intent.getAction())) {
             // your onClick action is here
             Toast.makeText(context, "FIRST_OUTLAY_TYPE", Toast.LENGTH_SHORT).show();
-            Log.w("Widget", "Clicked FIRST_OUTLAY_TYPE");
+            Log.d("Widget", "Clicked FIRST_OUTLAY_TYPE");
         } else if (SECOND_OUTLAY_TYPE.equals(intent.getAction())) {
             Toast.makeText(context, "SECOND_OUTLAY_TYPE", Toast.LENGTH_SHORT).show();
-            Log.w("Widget", "Clicked SECOND_OUTLAY_TYPE");
+            Log.d("Widget", "Clicked SECOND_OUTLAY_TYPE");
         } else if (MORE_OUTLAY_TYPES.equals(intent.getAction())) {
             Toast.makeText(context, "MORE_OUTLAY_TYPES", Toast.LENGTH_SHORT).show();
-            Log.w("Widget", "Clicked MORE_OUTLAY_TYPES");
+            Log.d("Widget", "Clicked MORE_OUTLAY_TYPES");
         }
     }
 
