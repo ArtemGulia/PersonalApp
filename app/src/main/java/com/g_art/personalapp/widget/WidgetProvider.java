@@ -11,6 +11,7 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.g_art.personalapp.R;
+import com.g_art.personalapp.util.ClickType;
 
 import java.util.Arrays;
 
@@ -43,7 +44,7 @@ public class WidgetProvider extends AppWidgetProvider {
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 						 int[] appWidgetIds) {
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
-//         Get all ids
+		//Get all ids
 		ComponentName thisWidget = new ComponentName(context, WidgetProvider.class);
 		int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
 
@@ -91,19 +92,70 @@ public class WidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 
-		if (FIRST_OUTLAY_TYPE.equals(intent.getAction())) {
+		ClickType clickType = null;
+		String value = null;
+		String action = intent.getAction();
+		if (FIRST_OUTLAY_TYPE.equals(action)) {
 			// your onClick action is here
-			Toast.makeText(context, FIRST_OUTLAY_TYPE, Toast.LENGTH_SHORT).show();
 			Log.d("Widget", "Clicked FIRST_OUTLAY_TYPE");
-		} else if (SECOND_OUTLAY_TYPE.equals(intent.getAction())) {
-			Toast.makeText(context, FIRST_OUTLAY_TYPE, Toast.LENGTH_SHORT).show();
+			clickType = ClickType.OUTLAY_FIRST_TYPE;
+		} else if (SECOND_OUTLAY_TYPE.equals(action)) {
 			Log.d("Widget", "Clicked SECOND_OUTLAY_TYPE");
-		} else if (MORE_OUTLAY_TYPES.equals(intent.getAction())) {
-			Toast.makeText(context, FIRST_OUTLAY_TYPE, Toast.LENGTH_SHORT).show();
+			clickType = ClickType.OUTLAY_SECOND_TYPE;
+		} else if (MORE_OUTLAY_TYPES.equals(action)) {
 			Log.d("Widget", "Clicked MORE_OUTLAY_TYPES");
+			clickType = ClickType.OUTLAY_MORE_TYPE;
+		} else if (ZERO_OUTLAY_VALUE.equals(action)) {
+			Log.d("Widget", "Clicked ZERO_OUTLAY_VALUE");
+			clickType = ClickType.ZERO;
+		} else if (ONE_OUTLAY_VALUE.equals(action)) {
+			Log.d("Widget", "Clicked ONE_OUTLAY_VALUE");
+			clickType = ClickType.ONE;
+		} else if (TWO_OUTLAY_VALUE.equals(action)) {
+			Log.d("Widget", "Clicked TWO_OUTLAY_VALUE");
+			clickType = ClickType.TWO;
+		} else if (THREE_OUTLAY_VALUE.equals(action)) {
+			Log.d("Widget", "Clicked THREE_OUTLAY_VALUE");
+			clickType = ClickType.THREE;
+		} else if (FOUR_OUTLAY_VALUE.equals(action)) {
+			Log.d("Widget", "Clicked FOUR_OUTLAY_VALUE");
+			clickType = ClickType.FOUR;
+		} else if (FIVE_OUTLAY_VALUE.equals(action)) {
+			Log.d("Widget", "Clicked FIVE_OUTLAY_VALUE");
+			clickType = ClickType.FIVE;
+		} else if (SIX_OUTLAY_VALUE.equals(action)) {
+			Log.d("Widget", "Clicked SIX_OUTLAY_VALUE");
+			clickType = ClickType.SIX;
+		} else if (SEVEN_OUTLAY_VALUE.equals(action)) {
+			Log.d("Widget", "Clicked SEVEN_OUTLAY_VALUE");
+			clickType = ClickType.SEVEN;
+		} else if (EIGHT_OUTLAY_VALUE.equals(action)) {
+			Log.d("Widget", "Clicked EIGHT_OUTLAY_VALUE");
+			clickType = ClickType.EIGHT;
+		} else if (NINE_OUTLAY_VALUE.equals(action)) {
+			Log.d("Widget", "Clicked NINE_OUTLAY_VALUE");
+			clickType = ClickType.NINE;
 		}
 
+		handleClick(context, clickType, value);
 		super.onReceive(context, intent);
+	}
+
+	void handleClick(Context context, ClickType clickType, String value) {
+		if (clickType != null) {
+			ComponentName thisWidget = new ComponentName(context, WidgetProvider.class);
+			AppWidgetManager appWidgetManager =  AppWidgetManager.getInstance(context);
+
+			int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+
+			for (int widgetId : allWidgetIds) {
+
+				RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+				remoteViews.setTextViewText(R.id.txt_outlay_value, clickType.getClickValue());
+
+				appWidgetManager.updateAppWidget(widgetId, remoteViews);
+			}
+		}
 	}
 
 	protected PendingIntent getPendingSelfIntent(Context context, String action) {
