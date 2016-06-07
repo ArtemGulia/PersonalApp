@@ -56,35 +56,12 @@ public class DataStorageImpl implements DataStorage{
 
 	@Override
 	public String getFirstOutlayType() {
-		Set<String> outlayTypes = getData(MORE_OUTLAY_TYPES);
-		if (outlayTypes == null || outlayTypes.isEmpty()) {
-			return null;
-		}
-
-		Iterator<String> it = outlayTypes.iterator();
-		String type = "";
-		if (it.hasNext()) {
-			type = it.next();
-		}
-		return type;
+		return getData(FIRST_OUTLAY_TYPE, EMPTY_OUTLAY);
 	}
 
 	@Override
 	public String getSecondOutlayType() {
-		Set<String> outlayTypes = getData(MORE_OUTLAY_TYPES);
-		if (outlayTypes == null || outlayTypes.isEmpty()) {
-			return null;
-		}
-
-		Iterator<String> it = outlayTypes.iterator();
-		String type = "";
-		if (it.hasNext()) {
-			it.next();
-			if (it.hasNext()) {
-				type = it.next();
-			}
-		}
-		return type;
+		return getData(SECOND_OUTLAY_TYPE, EMPTY_OUTLAY);
 	}
 
 	@Override
@@ -99,12 +76,12 @@ public class DataStorageImpl implements DataStorage{
 
 	@Override
 	public void setFirstOutlayType(String type) {
-		setOutlayType(0, type);
+		saveData(FIRST_OUTLAY_TYPE, type);
 	}
 
 	@Override
 	public void setSecondOutlayType(String type) {
-		setOutlayType(1, type);
+		saveData(SECOND_OUTLAY_TYPE, type);
 	}
 
 	@Override

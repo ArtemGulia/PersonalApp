@@ -14,9 +14,11 @@ public interface DataStorage {
 
 	String getFirstOutlayType();
 	String getSecondOutlayType();
+	@Deprecated
 	List<String> getOutlayTypes();
 	void setFirstOutlayType(String type);
 	void setSecondOutlayType(String type);
+	@Deprecated
 	void setOutlayTypes(List<String> types);
 
 	String getSelectedOutlayType();

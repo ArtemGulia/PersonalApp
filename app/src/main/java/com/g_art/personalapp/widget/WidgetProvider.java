@@ -8,18 +8,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.g_art.personalapp.R;
 import com.g_art.personalapp.util.ClickType;
+import com.g_art.personalapp.util.DataStorage;
+import com.g_art.personalapp.util.DataStorageImpl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by fftem on 22-Apr-16.
  */
 public class WidgetProvider extends AppWidgetProvider {
-	final String LOG_TAG = "myLogs";
+	final String LOG_TAG = "Widget";
+
+	private static final String VALUE = "value";
+	private static final String EMPTY_VALUE = "0";
+	private static final String EMPTY_OUTLAY = "Some outlay type";
 	private final String FIRST_OUTLAY_TYPE = "FIRST_OUTLAY_TYPE";
 	private final String SECOND_OUTLAY_TYPE = "SECOND_OUTLAY_TYPE";
 	private final String MORE_OUTLAY_TYPES = "MORE_OUTLAY_TYPES";
@@ -33,11 +42,15 @@ public class WidgetProvider extends AppWidgetProvider {
 	private final String SEVEN_OUTLAY_VALUE = "7";
 	private final String EIGHT_OUTLAY_VALUE = "8";
 	private final String NINE_OUTLAY_VALUE = "9";
+	private final String DELETE_OUTLAY_VALUE = "delete";
+	private final String PUSH = "push";
+
+	private DataStorage dataStorage;
 
 	@Override
 	public void onEnabled(Context context) {
 		super.onEnabled(context);
-		Log.d(LOG_TAG, "onEnabled");
+		Log.i(LOG_TAG, "onEnabled");
 	}
 
 	@Override
@@ -48,19 +61,40 @@ public class WidgetProvider extends AppWidgetProvider {
 		ComponentName thisWidget = new ComponentName(context, WidgetProvider.class);
 		int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
 
+		dataStorage = DataStorageImpl.getInstance(context);
+		initData();
+		String value = dataStorage.getStoredValue();
+		String firstOutlay = dataStorage.getFirstOutlayType();
+		String secondOutlay = dataStorage.getSecondOutlayType();
+		String selectedOutlay = dataStorage.getSelectedOutlayType();
+
 		for (int widgetId : allWidgetIds) {
 
 			RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 
+			remoteViews.setTextViewText(R.id.btn_first_outlay_type, firstOutlay);
+			remoteViews.setTextViewText(R.id.btn_sec_outlay_type, secondOutlay);
+			if (selectedOutlay != null && !selectedOutlay.isEmpty()) {
+				remoteViews.setTextViewText(R.id.txt_choose_outlay_type, selectedOutlay);
+			}
+			remoteViews.setTextViewText(R.id.txt_outlay_value, value);
 			registerOnClickPendingIntent(context, remoteViews);
 
 			appWidgetManager.updateAppWidget(widgetId, remoteViews);
 		}
 
-		Log.d(LOG_TAG, "onUpdate " + Arrays.toString(appWidgetIds));
+		Log.i(LOG_TAG, "onUpdate " + Arrays.toString(appWidgetIds));
+	}
+
+	private void initData() {
+		// TODO: 07-Jun-16 Go to server for last outlay types
+		dataStorage.setFirstOutlayType("test1");
+		dataStorage.setSecondOutlayType("test2");
 	}
 
 	private void registerOnClickPendingIntent(Context context, RemoteViews remoteViews) {
+		remoteViews.setOnClickPendingIntent(R.id.btn_add_outlay,
+				getPendingSelfIntent(context, PUSH));
 		remoteViews.setOnClickPendingIntent(R.id.btn_first_outlay_type,
 				getPendingSelfIntent(context, FIRST_OUTLAY_TYPE));
 		remoteViews.setOnClickPendingIntent(R.id.btn_sec_outlay_type,
@@ -87,78 +121,125 @@ public class WidgetProvider extends AppWidgetProvider {
 				getPendingSelfIntent(context, EIGHT_OUTLAY_VALUE));
 		remoteViews.setOnClickPendingIntent(R.id.btn_nine_plus,
 				getPendingSelfIntent(context, NINE_OUTLAY_VALUE));
+		remoteViews.setOnClickPendingIntent(R.id.btn_remove,
+				getPendingSelfIntent(context, DELETE_OUTLAY_VALUE));
 	}
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		super.onReceive(context, intent);
 
 		ClickType clickType = null;
-		String value = null;
+
 		String action = intent.getAction();
 		if (FIRST_OUTLAY_TYPE.equals(action)) {
 			// your onClick action is here
-			Log.d("Widget", "Clicked FIRST_OUTLAY_TYPE");
+			Log.i("Widget", "Clicked FIRST_OUTLAY_TYPE");
 			clickType = ClickType.OUTLAY_FIRST_TYPE;
 		} else if (SECOND_OUTLAY_TYPE.equals(action)) {
-			Log.d("Widget", "Clicked SECOND_OUTLAY_TYPE");
+			Log.i("Widget", "Clicked SECOND_OUTLAY_TYPE");
 			clickType = ClickType.OUTLAY_SECOND_TYPE;
 		} else if (MORE_OUTLAY_TYPES.equals(action)) {
-			Log.d("Widget", "Clicked MORE_OUTLAY_TYPES");
+			Log.i("Widget", "Clicked MORE_OUTLAY_TYPES");
 			clickType = ClickType.OUTLAY_MORE_TYPE;
 		} else if (ZERO_OUTLAY_VALUE.equals(action)) {
-			Log.d("Widget", "Clicked ZERO_OUTLAY_VALUE");
+			Log.i("Widget", "Clicked ZERO_OUTLAY_VALUE");
 			clickType = ClickType.ZERO;
 		} else if (ONE_OUTLAY_VALUE.equals(action)) {
-			Log.d("Widget", "Clicked ONE_OUTLAY_VALUE");
+			Log.i("Widget", "Clicked ONE_OUTLAY_VALUE");
 			clickType = ClickType.ONE;
 		} else if (TWO_OUTLAY_VALUE.equals(action)) {
-			Log.d("Widget", "Clicked TWO_OUTLAY_VALUE");
+			Log.i("Widget", "Clicked TWO_OUTLAY_VALUE");
 			clickType = ClickType.TWO;
 		} else if (THREE_OUTLAY_VALUE.equals(action)) {
-			Log.d("Widget", "Clicked THREE_OUTLAY_VALUE");
+			Log.i("Widget", "Clicked THREE_OUTLAY_VALUE");
 			clickType = ClickType.THREE;
 		} else if (FOUR_OUTLAY_VALUE.equals(action)) {
-			Log.d("Widget", "Clicked FOUR_OUTLAY_VALUE");
+			Log.i("Widget", "Clicked FOUR_OUTLAY_VALUE");
 			clickType = ClickType.FOUR;
 		} else if (FIVE_OUTLAY_VALUE.equals(action)) {
-			Log.d("Widget", "Clicked FIVE_OUTLAY_VALUE");
+			Log.i("Widget", "Clicked FIVE_OUTLAY_VALUE");
 			clickType = ClickType.FIVE;
 		} else if (SIX_OUTLAY_VALUE.equals(action)) {
-			Log.d("Widget", "Clicked SIX_OUTLAY_VALUE");
+			Log.i("Widget", "Clicked SIX_OUTLAY_VALUE");
 			clickType = ClickType.SIX;
 		} else if (SEVEN_OUTLAY_VALUE.equals(action)) {
-			Log.d("Widget", "Clicked SEVEN_OUTLAY_VALUE");
+			Log.i("Widget", "Clicked SEVEN_OUTLAY_VALUE");
 			clickType = ClickType.SEVEN;
 		} else if (EIGHT_OUTLAY_VALUE.equals(action)) {
-			Log.d("Widget", "Clicked EIGHT_OUTLAY_VALUE");
+			Log.i("Widget", "Clicked EIGHT_OUTLAY_VALUE");
 			clickType = ClickType.EIGHT;
 		} else if (NINE_OUTLAY_VALUE.equals(action)) {
-			Log.d("Widget", "Clicked NINE_OUTLAY_VALUE");
+			Log.i("Widget", "Clicked NINE_OUTLAY_VALUE");
 			clickType = ClickType.NINE;
+		} else if (DELETE_OUTLAY_VALUE.equals(action)) {
+			Log.i("Widget", "Clicked DELETE_OUTLAY_VALUE");
+			clickType = ClickType.DELETE;
+		} else if (PUSH.equals(action)) {
+			Log.i("Widget", "Clicked PUSH");
+			clickType = ClickType.PUSH;
 		}
 
-		handleClick(context, clickType, value);
-		super.onReceive(context, intent);
+		handleClick(context, clickType);
 	}
 
-	void handleClick(Context context, ClickType clickType, String value) {
+	private void handleClick(Context context, ClickType clickType) {
 		if (clickType != null) {
 			ComponentName thisWidget = new ComponentName(context, WidgetProvider.class);
-			AppWidgetManager appWidgetManager =  AppWidgetManager.getInstance(context);
+			AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
 			int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+
+			dataStorage = DataStorageImpl.getInstance(context);
+			String storedValue = dataStorage.getStoredValue();
 
 			for (int widgetId : allWidgetIds) {
 
 				RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-				remoteViews.setTextViewText(R.id.txt_outlay_value, clickType.getClickValue());
-
+				String newValue = storedValue;
+				switch (clickType) {
+					case DELETE:
+						if (!newValue.equals(EMPTY_VALUE)) {
+							if (storedValue.length() == 1) {
+								newValue = EMPTY_VALUE;
+							} else {
+								newValue = storedValue.substring(0, storedValue.length() - 1);
+							}
+						}
+						break;
+					case PUSH:
+						// TODO: 06-Jun-16 Push to server
+						newValue = EMPTY_VALUE;
+						remoteViews.setTextViewText(R.id.txt_choose_outlay_type, EMPTY_OUTLAY);
+						break;
+					case OUTLAY_FIRST_TYPE:
+					case OUTLAY_SECOND_TYPE:
+						String outlayType = "";
+						if (clickType.equals(ClickType.OUTLAY_FIRST_TYPE)){
+							outlayType = dataStorage.getFirstOutlayType();
+						} else {
+							outlayType = dataStorage.getSecondOutlayType();
+						}
+						remoteViews.setTextViewText(R.id.txt_choose_outlay_type, outlayType);
+						break;
+					case OUTLAY_MORE_TYPE:
+						break;
+					default:
+						if (storedValue.equals(EMPTY_VALUE)) {
+							newValue = clickType.getClickValue();
+						} else {
+							newValue = storedValue + clickType.getClickValue();
+						}
+						break;
+				}
+				dataStorage.saveValue(newValue);
+				remoteViews.setTextViewText(R.id.txt_outlay_value, newValue);
 				appWidgetManager.updateAppWidget(widgetId, remoteViews);
 			}
 		}
 	}
 
-	protected PendingIntent getPendingSelfIntent(Context context, String action) {
+	private PendingIntent getPendingSelfIntent(Context context, String action) {
 		Intent intent = new Intent(context, getClass());
 		intent.setAction(action);
 		return PendingIntent.getBroadcast(context, 0, intent, 0);
@@ -167,12 +248,12 @@ public class WidgetProvider extends AppWidgetProvider {
 	@Override
 	public void onDeleted(Context context, int[] appWidgetIds) {
 		super.onDeleted(context, appWidgetIds);
-		Log.d(LOG_TAG, "onDeleted " + Arrays.toString(appWidgetIds));
+		Log.i(LOG_TAG, "onDeleted " + Arrays.toString(appWidgetIds));
 	}
 
 	@Override
 	public void onDisabled(Context context) {
 		super.onDisabled(context);
-		Log.d(LOG_TAG, "onDisabled");
+		Log.i(LOG_TAG, "onDisabled");
 	}
 }
