@@ -2,10 +2,8 @@ package com.g_art.personalapp.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +30,6 @@ public class DataStorageImpl implements DataStorage{
 			ourInstance = new DataStorageImpl();
 		}
 		initSharedPrefs(context);
-		Log.i("Widget", ourInstance.toString());
 		return ourInstance;
 	}
 

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
 import com.g_art.personalapp.R;
+import com.g_art.personalapp.activity.PersonalActivity;
 import com.g_art.personalapp.util.ClickType;
 import com.g_art.personalapp.util.DataStorage;
 import com.g_art.personalapp.util.DataStorageImpl;
@@ -218,6 +219,7 @@ public class WidgetProvider extends AppWidgetProvider {
 						remoteViews.setTextViewText(R.id.txt_choose_outlay_type, outlayType);
 						break;
 					case OUTLAY_MORE_TYPE:
+						Intent launchApp = new Intent(context, PersonalActivity.class);
 						break;
 					default:
 						if (storedValue.equals(EMPTY_VALUE)) {
@@ -235,6 +237,11 @@ public class WidgetProvider extends AppWidgetProvider {
 	}
 
 	private PendingIntent getPendingSelfIntent(Context context, String action) {
+		if (MORE_OUTLAY_TYPES.equals(action)) {
+			Intent intent = new Intent(context, PersonalActivity.class);
+			intent.setAction(action);
+			return PendingIntent.getActivity(context, 0, intent, 0);
+		}
 		Intent intent = new Intent(context, getClass());
 		intent.setAction(action);
 		return PendingIntent.getBroadcast(context, 0, intent, 0);
