@@ -6,5 +6,6 @@
     android:minHeight="190dp"
     android:minResizeWidth="294dp"
     android:minResizeHeight="190dp"
-    android:updatePeriodMillis="0">
+    android:updatePeriodMillis="0"
+    android:configure="com.g_art.personalapp.activity.WidgetConfigure">
 </appwidget-provider>

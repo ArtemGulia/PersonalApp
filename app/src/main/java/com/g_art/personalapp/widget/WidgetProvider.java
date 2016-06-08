@@ -58,7 +58,7 @@ public class WidgetProvider extends AppWidgetProvider {
 		int[] allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
 
 		dataStorage = DataStorageImpl.getInstance(context);
-		initData();
+//		initData();
 		String value = dataStorage.getStoredValue();
 		String firstOutlay = dataStorage.getFirstOutlayType();
 		String secondOutlay = dataStorage.getSecondOutlayType();
