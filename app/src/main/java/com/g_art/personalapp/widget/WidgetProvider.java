@@ -8,17 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
-
 import com.g_art.personalapp.R;
 import com.g_art.personalapp.util.ClickType;
 import com.g_art.personalapp.util.DataStorage;
 import com.g_art.personalapp.util.DataStorageImpl;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by fftem on 22-Apr-16.

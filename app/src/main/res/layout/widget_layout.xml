@@ -6,194 +6,194 @@
                 android:orientation="vertical">
 
     <TextView
-        android:id="@+id/txt_widget_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/app_name"
-        style="@style/OutLayWidgetTitle"
-        android:paddingTop="4dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"/>
+            android:id="@+id/txt_widget_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/app_name"
+            style="@style/OutLayWidgetTitle"
+            android:paddingTop="4dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"/>
 
     <TextView
-        android:id="@+id/txt_choose_outlay_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_widget_title"
-        android:text="Some outlay type"
-        android:textSize="23sp"
-        android:textColor="@color/widgetTextColor"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"/>
+            android:id="@+id/txt_choose_outlay_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_widget_title"
+            android:text="Some outlay type"
+            android:textSize="23sp"
+            android:textColor="@color/widgetTextColor"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"/>
 
     <Button
-        android:id="@+id/btn_first_outlay_type"
-        style="@style/OutLayButtons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_choose_outlay_type"
-        android:layout_marginLeft="4dp"/>
+            android:id="@+id/btn_first_outlay_type"
+            style="@style/OutLayButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_choose_outlay_type"
+            android:layout_marginLeft="4dp"/>
 
     <Button
-        android:id="@+id/btn_sec_outlay_type"
-        style="@style/OutLayButtons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btn_first_outlay_type"
-        android:layout_toEndOf="@+id/btn_first_outlay_type"/>
+            android:id="@+id/btn_sec_outlay_type"
+            style="@style/OutLayButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btn_first_outlay_type"
+            android:layout_toEndOf="@+id/btn_first_outlay_type"/>
 
     <Button
-        android:id="@+id/btn_more_outlay_types"
-        style="@style/OutLayButtons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btn_sec_outlay_type"
-        android:layout_toEndOf="@+id/btn_sec_outlay_type"/>
+            android:id="@+id/btn_more_outlay_types"
+            style="@style/OutLayButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btn_sec_outlay_type"
+            android:layout_toEndOf="@+id/btn_sec_outlay_type"/>
 
     <TextView
-        android:id="@+id/txt_outlay_volume"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/btn_more_outlay_types"
-        android:gravity="end"
-        android:text="@string/outlay_volume"
-        android:textColor="@color/widgetTextColor"
-        android:layout_alignEnd="@+id/btn_remove"
-        android:paddingEnd="8dp"/>
+            android:id="@+id/txt_outlay_volume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/btn_more_outlay_types"
+            android:gravity="end"
+            android:text="@string/outlay_volume"
+            android:textColor="@color/widgetTextColor"
+            android:layout_alignEnd="@+id/btn_remove"
+            android:paddingEnd="8dp"/>
 
     <TextView
-        android:id="@+id/txt_outlay_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="false"
-        android:layout_below="@+id/txt_outlay_volume"
-        android:gravity="end"
-        android:text="@string/def_outlay_value"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        android:textColor="@color/widgetTextColor"
-        android:layout_toStartOf="@+id/btn_remove"
-        android:paddingEnd="3dp"/>
+            android:id="@+id/txt_outlay_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_below="@+id/txt_outlay_volume"
+            android:gravity="end"
+            android:text="@string/def_outlay_value"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textColor="@color/widgetTextColor"
+            android:layout_toStartOf="@+id/btn_remove"
+            android:paddingEnd="3dp"/>
 
     <ImageButton
-        android:id="@+id/btn_remove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_backspace_black_24dp"
-        android:layout_alignTop="@+id/txt_outlay_value"
-        android:layout_alignBottom="@+id/txt_outlay_value"
-        android:layout_alignParentEnd="true"
-        android:background="@android:color/transparent"
-        android:padding="8dp"/>
+            android:id="@+id/btn_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_backspace_black_24dp"
+            android:layout_alignTop="@+id/txt_outlay_value"
+            android:layout_alignBottom="@+id/txt_outlay_value"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:padding="8dp"/>
 
     <LinearLayout
-        android:id="@+id/first_line_numbers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_remove"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp">
+            android:id="@+id/first_line_numbers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_remove"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp">
 
         <Button
-            android:id="@+id/btn_one_plus"
-            style="@style/OutLayNumberButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/one"
-            android:layout_weight="1"/>
+                android:id="@+id/btn_one_plus"
+                style="@style/OutLayNumberButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/one"
+                android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_two_plus"
-            style="@style/OutLayNumberButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/two"
-            android:layout_weight="1"/>
+                android:id="@+id/btn_two_plus"
+                style="@style/OutLayNumberButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/two"
+                android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_three_plus"
-            style="@style/OutLayNumberButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/three"
-            android:layout_weight="1"/>
+                android:id="@+id/btn_three_plus"
+                style="@style/OutLayNumberButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/three"
+                android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_four_plus"
-            style="@style/OutLayNumberButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/four"
-            android:layout_weight="1"/>
+                android:id="@+id/btn_four_plus"
+                style="@style/OutLayNumberButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/four"
+                android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_five_plus"
-            style="@style/OutLayNumberButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/five"
-            android:layout_weight="1"/>
+                android:id="@+id/btn_five_plus"
+                style="@style/OutLayNumberButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/five"
+                android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_six_plus"
-            style="@style/OutLayNumberButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/six"
-            android:layout_weight="1"/>
+                android:id="@+id/btn_six_plus"
+                style="@style/OutLayNumberButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/six"
+                android:layout_weight="1"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/second_line_numbers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/first_line_numbers"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp">
+            android:id="@+id/second_line_numbers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/first_line_numbers"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp">
 
         <Button
-            android:id="@+id/btn_seven_plus"
-            style="@style/OutLayNumberButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/seven"
-            android:layout_weight="1"/>
+                android:id="@+id/btn_seven_plus"
+                style="@style/OutLayNumberButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/seven"
+                android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_eight_plus"
-            style="@style/OutLayNumberButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/eight"
-            android:layout_weight="1"/>
+                android:id="@+id/btn_eight_plus"
+                style="@style/OutLayNumberButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/eight"
+                android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_nine_plus"
-            style="@style/OutLayNumberButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nine"
-            android:layout_weight="1"/>
+                android:id="@+id/btn_nine_plus"
+                style="@style/OutLayNumberButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nine"
+                android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_zero_plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/zero"
-            android:layout_weight="4"
-            style="@style/OutLayNumberButtons"/>
+                android:id="@+id/btn_zero_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zero"
+                android:layout_weight="4"
+                style="@style/OutLayNumberButtons"/>
 
         <Button
-            android:id="@+id/btn_add_outlay"
-            style="@style/OutLayButtons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add_outlay"
-            android:layout_weight="4"/>
+                android:id="@+id/btn_add_outlay"
+                style="@style/OutLayButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_outlay"
+                android:layout_weight="4"/>
 
     </LinearLayout>
 </RelativeLayout>
