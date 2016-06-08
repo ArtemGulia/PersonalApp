@@ -72,11 +72,13 @@
             android:layout_below="@+id/txt_outlay_volume"
             android:gravity="end"
             android:text="@string/def_outlay_value"
+            android:lines="1"
             android:textSize="23sp"
             android:textStyle="bold"
             android:textColor="@color/widgetTextColor"
             android:layout_toStartOf="@+id/btn_remove"
-            android:paddingEnd="3dp"/>
+            android:paddingEnd="3dp"
+            android:ellipsize="end"/>
 
     <ImageButton
             android:id="@+id/btn_remove"
