@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import com.g_art.personalapp.util.DataStorage;
 import com.g_art.personalapp.util.DataStorageImpl;
+import com.g_art.personalapp.widget.WidgetProvider;
 
 /**
  * PersonalApp
@@ -41,6 +42,9 @@ public class WidgetConfigure extends AppCompatActivity {
 		Intent resultValue = new Intent();
 		resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
 		setResult(RESULT_OK, resultValue);
+
+		WidgetProvider.updateWidget(getApplicationContext(), mAppWidgetId);
+		// Destroy activity
 		finish();
 	}
 
