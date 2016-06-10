@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1074182261638",
+    "firebase_url": "https://personalapp-77acb.firebaseio.com",
+    "project_id": "personalapp-77acb",
+    "storage_bucket": "personalapp-77acb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074182261638:android:20cd141244ef24d0",
+        "android_client_info": {
+          "package_name": "com.g_art.personalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074182261638-b14hakcsci8ppv1bnha3apbsgp94s5p5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHugwLTmHvR8zf1nusOCg-c-ZYn-ED0YM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

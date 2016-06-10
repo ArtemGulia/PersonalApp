@@ -20,7 +20,7 @@ import java.util.Arrays;
  * Created by fftem on 22-Apr-16.
  */
 public class WidgetProvider extends AppWidgetProvider {
-	final String LOG_TAG = "Widget";
+	private final String LOG_TAG = "Widget";
 
 	private static final String VALUE = "value";
 	private static final String EMPTY_VALUE = "0";
